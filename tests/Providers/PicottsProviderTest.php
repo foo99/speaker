@@ -115,7 +115,9 @@ class PicottsProviderTest extends \PHPUnit_Framework_TestCase
 
         $provider = new PicottsProvider;
 
-        $this->setExpectedException(Exception::class, "TextToSpeech unable to create file: /tmp/speaker_picotts.wav");
+        $path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "speaker_picotts.wav";
+        
+        $this->setExpectedException(Exception::class, "TextToSpeech unable to create file: {$path}");
         $provider->textToSpeech("Hello", $process);
     }
 

@@ -61,7 +61,7 @@ class TextToSpeechTest extends \PHPUnit_Framework_TestCase
             ->with("hello")
             ->andReturn("test-mp3-data");
 
-        $tmp = "/tmp/test.mp3";
+        $tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "test.mp3";
 
         $this->tts->save($tmp);
 
@@ -101,7 +101,7 @@ class TextToSpeechTest extends \PHPUnit_Framework_TestCase
             ->with("hello")
             ->andReturn("test-mp3-data");
 
-        $tmp = "/tmp/5ee35ff512372af8cee8ddf79edec5ea.mp3";
+        $tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "5ee35ff512372af8cee8ddf79edec5ea.mp3";
 
         $filename = $this->tts->getFile();
         $this->assertSame($tmp, $filename);

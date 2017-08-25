@@ -34,7 +34,7 @@ class GoogleProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->client->shouldReceive("get")
             ->once()
-            ->with("http://translate.google.com/translate_tts?q=Hello&tl=en&client=duncan3dc-speaker")
+            ->with("http://translate.google.com/translate_tts?q=Hello&tl=en&client=tw-ob&ie=UTF-8")
             ->andReturn($response);
 
         $this->assertSame("mp3", $provider->textToSpeech("Hello"));
@@ -54,7 +54,7 @@ class GoogleProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->client->shouldReceive("get")
             ->once()
-            ->with("http://translate.google.com/translate_tts?q=Hello&tl=fr&client=duncan3dc-speaker")
+            ->with("http://translate.google.com/translate_tts?q=Hello&tl=fr&client=tw-ob&ie=UTF-8")
             ->andReturn($response);
 
         $this->assertSame("mp3", $provider->textToSpeech("Hello"));
@@ -64,8 +64,10 @@ class GoogleProviderTest extends \PHPUnit_Framework_TestCase
     public function testSetLanguageFailure()
     {
         $provider = new GoogleProvider;
+        
+        $availableLanguages = $provider->getAvailableLanguages();
 
-        $this->setExpectedException("InvalidArgumentException", "Unexpected language code (nope), codes should be 2 characters");
+        $this->setExpectedException("InvalidArgumentException", "Unexpected language code (nope), all the available languages (" . implode(", ", $availableLanguages) . ")");
         $provider->setLanguage("nope");
     }
 

@@ -2,7 +2,7 @@
 
 namespace duncan3dc\Speaker\Test\Providers;
 
-require __DIR__ . "/handlers.php";
+require __DIR__ . "/handlers_function.php";
 
 class Handlers
 {
